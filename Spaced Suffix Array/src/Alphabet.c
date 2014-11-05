@@ -23,6 +23,7 @@ struct rankedAlphabet{
 void fromString(char * text, char * mask, int * ascii){
 	toUpperCase(text);
 	toAscii(text, ascii);
+	createArray(dna);
 
 	int tLength = strlen(text);
 	int mLength = strlen(mask);
