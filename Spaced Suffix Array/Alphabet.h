@@ -31,4 +31,6 @@ void createArray(UT_array *array);
 
 void rankAlphabet();
 
+int main();
+
 #endif /* SPACEDSUFFIXARRAY_ALPHABET_H_ */

@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 void fromString(char * text, char * mask, int * ascii){
 	struct rankedAlphabet *alphabet = NULL; /*initialize hash to NULL*/
@@ -97,4 +98,6 @@ void rankAlphabet(){
 	
 }
 
-int main()
+int main(){
+
+}
