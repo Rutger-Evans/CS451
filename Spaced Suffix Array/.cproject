@@ -24,7 +24,7 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.1171597542" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1390559531" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 							</tool>
-							<tool command="gcc -std=c99 " id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.369998007" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug">
+							<tool command="gcc -C99" id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.369998007" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug">
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.1854946578" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.2013866117" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1477035428" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
@@ -41,6 +41,9 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.21624264.1879786819" name="testDriver.c" rcbsApplicability="disable" resourcePath="testDriver.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.369998007.650768231">
+						<tool command="gcc " id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.369998007.650768231" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.369998007"/>
+					</fileInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -68,7 +71,7 @@
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.2025607701" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.161509690" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1754973983" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release">
+							<tool command="gcc -C99" id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1754973983" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release">
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.exe.release.option.optimization.level.1068788662" name="Optimization Level" superClass="gnu.c.compiler.exe.release.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.release.option.debugging.level.1614168457" name="Debug Level" superClass="gnu.c.compiler.exe.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.2131468484" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
@@ -85,6 +88,24 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.exe.release.262195865.315903018" name="/" resourcePath="Release">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.release.1884711339" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.release" unusedChildren="">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.release" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.release"/>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.2111379254" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.468876876"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1398596882" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.926897640"/>
+							<tool command="gcc -" id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.2072460791" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1754973983">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1396982468" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.1062436279" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release.1004239674"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.1996197420" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.890302454"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.1852907623" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release.117364719">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1313894401" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.release.262195865.1431918770" name="testDriver.c" rcbsApplicability="disable" resourcePath="testDriver.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1754973983.157572154">
+						<tool command="gcc " id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1754973983.157572154" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1754973983"/>
+					</fileInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -92,15 +113,6 @@
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="Spaced Suffix Array.cdt.managedbuild.target.gnu.exe.2074724647" name="Executable" projectType="cdt.managedbuild.target.gnu.exe"/>
-	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.21624264;cdt.managedbuild.config.gnu.exe.debug.21624264.;cdt.managedbuild.tool.gnu.c.compiler.exe.debug.369998007;cdt.managedbuild.tool.gnu.c.compiler.input.1477035428">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.release.262195865;cdt.managedbuild.config.gnu.exe.release.262195865.;cdt.managedbuild.tool.gnu.c.compiler.exe.release.1754973983;cdt.managedbuild.tool.gnu.c.compiler.input.2131468484">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
@@ -111,4 +123,14 @@
 			<resource resourceType="PROJECT" workspacePath="/Spaced Suffix Array"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.release.262195865;cdt.managedbuild.config.gnu.exe.release.262195865.;cdt.managedbuild.tool.gnu.c.compiler.exe.release.1754973983;cdt.managedbuild.tool.gnu.c.compiler.input.2131468484">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.21624264;cdt.managedbuild.config.gnu.exe.debug.21624264.;cdt.managedbuild.tool.gnu.c.compiler.exe.debug.369998007;cdt.managedbuild.tool.gnu.c.compiler.input.1477035428">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
