@@ -34,9 +34,10 @@ void toAscii(char * text, int * ascii);
 
 void createDNAHash(struct DNAValues *hash);
 
-void rankAlphabet();
+void rankAlphabet(struct rankedAlphabet *alphabet);
 
-/*
-int main();
-*/
+void addDNALetter(struct DNAValues *dna, int letter, int value);
+
+void addAlphabetLetter(struct rankedAlphabet *alphabet, int newLetter[], int rank);
+
 #endif /* SPACEDSUFFIXARRAY_ALPHABET_H_ */

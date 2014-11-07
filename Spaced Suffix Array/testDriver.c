@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include "Alphabet.h"
-#include "utarray.h"
 #include "uthash.h"
 
 int main()

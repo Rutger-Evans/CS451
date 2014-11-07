@@ -32,6 +32,12 @@ void fromString(char * text, int tLength, char mask[], int mLength, int * ascii)
 		padding = padding + ((tLength+padding) % mLength);
 	}
 	
+	text = realloc(text, sizeof(char) * (tLength + padding));
+
+	for(int i = 0; i < padding; i++){
+		text[tLength - 1 + i] = -1 * (i + 1);
+	}
+
 	/* create the length m letter and initialize it with rank 0 */
 	for(int i = 0; i < (tLength + padding); i = i + mLength){
 		int newLetter[mLength];
@@ -42,7 +48,7 @@ void fromString(char * text, int tLength, char mask[], int mLength, int * ascii)
 			}
 		}
 
-		addAlphabetLetter(alphabet, newLetter, mLength, 0);
+		addAlphabetLetter(alphabet, newLetter, 0);
 	}
 
 	/* rank the alphabet */
@@ -88,8 +94,15 @@ void createDNAHash(struct DNAValues *hash, int paddingLength){
 	}
 }
 
-void rankAlphabet(){
+void rankAlphabet(struct rankedAlphabet *alphabet){
+	struct rankedAlphabet *a;
 
+	unsigned int count;
+	count = HASH_COUNT(alphabet);
+
+	for (a=alphabet; a != NULL; a=a->hh.next){
+		int tempRank;
+	}
 }
 
 void addDNALetter(struct DNAValues *dna, int letter, int value){
@@ -101,12 +114,12 @@ void addDNALetter(struct DNAValues *dna, int letter, int value){
 	Hash_ADD_INT(dna, letter, alph);
 }
 
-void addAlphabetLetter(struct rankedAlphabet *alphabet, int newLetter[], int mLength, int rank){
+void addAlphabetLetter(struct rankedAlphabet *alphabet, int newLetter[], int rank){
 	struct rankedAlphabet *alph;
 	alph = malloc(sizeof(struct rankedAlphabet));
-	alph->letter = malloc(mLength * sizeof(int));
+	alph->letter = malloc(sizeof(newLetter) * sizeof(int));
 
-	for(int i = 0; i < mLength; i++){
+	for(int i = 0; i < sizeof(newLetter); i++){
 		alph->letter[i] = newLetter[i];
 	}
 
@@ -114,8 +127,3 @@ void addAlphabetLetter(struct rankedAlphabet *alphabet, int newLetter[], int mLe
 	
 	HASH_ADD_PTR(alphabet, letter, alph);
 }
-/*
-int main(){
-
-}
-*/
