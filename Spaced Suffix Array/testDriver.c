@@ -11,6 +11,18 @@
 
 int main()
 {
+	int tLen = 12;
+	char t[] = "acgtacgtacgt";
+	char *text = malloc(tLen * sizeof(char));
+	text = strcpy(text, t);
+
+	int mLen = 3;
+	char mask[] = "101";
+
+	struct rankedAlphabet *alphabet = NULL; /*initialize hash to NULL*/
+
+	fromString(text, tLen, mask, mLen, alphabet);
+
 
 	return 0;
 }

@@ -12,118 +12,113 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-void fromString(char * text, int tLength, char mask[], int mLength, int * ascii){
-	struct rankedAlphabet *alphabet = NULL; /*initialize hash to NULL*/
-	struct DNAValues *dna = NULL;
-	
+void fromString(char * text, int tLength, char mask[], int mLength, struct rankedAlphabet *alphabet){
 	extern int k;
+	extern char sentinel[29];
+	setSentinels();
 
-	toUpperCase(text);
-	toAscii(text, ascii);
-	createDNAHash(dna);
-	
-	int *p;
+	toUpperCase(text, tLength);
 
 	int padding = 2 * mLength - 1;
 	
 	k = 1 + ((tLength - 1) / mLength);
-	
+
 	if ((tLength + padding) % mLength != 0){
 		padding = padding + ((tLength+padding) % mLength);
 	}
 	
 	text = realloc(text, sizeof(char) * (tLength + padding));
 
-	for(int i = 0; i < padding; i++){
-		text[tLength - 1 + i] = -1 * (i + 1);
+	int i;
+	for(i = 0; i < padding; i++){
+		text[tLength + i] = sentinel[i];
 	}
 
+	printf("%s",text);
+
 	/* create the length m letter and initialize it with rank 0 */
-	for(int i = 0; i < (tLength + padding); i = i + mLength){
-		int newLetter[mLength];
-		
-		for(int j = 0; j < mLength; j++){
-			if(mask[j] != 0){
-				newLetter[j] = (int)text[i + j];
-			}
+	for(i = 0; i < (tLength + padding); i = i + mLength){
+		char newLetter[15];
+		int j;
+		for(j = 0; j < mLength; j++){
+			newLetter[j] = text[i + j];
 		}
 
 		addAlphabetLetter(alphabet, newLetter, 0);
 	}
 
 	/* rank the alphabet */
-	rankAlphabet();
+	rankAlphabet(alphabet, mLength);
 }
 
 /* make the text all upper case */
-void toUpperCase(char * text){
-	while (*text != '\0'){
-		if (islower(*text)){
-			*text = toupper(*text);
+void toUpperCase(char * text, int tLength){
+	int i;
+	for (i = 0; i < tLength; i++){
+		if (islower(text[i])){
+			text[i] = toupper(text[i]);
 		}
-		text++;
 	}
 }
 
-/* turn the text into an array of ints */
-void toAscii(char * text, int * ascii){
-	while (*text != '\0'){
-		int c = (int) *text;
-		*ascii = c;
-		text++;
-		ascii++;
-	}
-}
-
-/* initialize the array of dna */
-void createDNAHash(struct DNAValues *hash, int paddingLength){
-	int A = 65;
-	int C = 66;
-	int G = 71;
-	int T = 84;
-
-	addDNALetter(A, A);
-	addDNALetter(C, C);
-	addDNALetter(G, G);
-	addDNALetter(T, T);
-
-	for(int i = 0; i < paddingLength; i++){
-		int letter = -1 * (i + 1);
-		int value = -1 * (i + 1);
-		addDNALetter(hash, letter, value);
-	}
-}
-
-void rankAlphabet(struct rankedAlphabet *alphabet){
+void rankAlphabet(struct rankedAlphabet *alphabet, int mLength){
 	struct rankedAlphabet *a;
 
-	unsigned int count;
-	count = HASH_COUNT(alphabet);
+	HASH_SORT(alphabet, letter_sort);
 
+	int i = 0;
 	for (a=alphabet; a != NULL; a=a->hh.next){
-		int tempRank;
+		a->rank = i;
+		i++;
 	}
 }
 
-void addDNALetter(struct DNAValues *dna, int letter, int value){
-	struct DNAValues *alph;
-	alph = malloc(sizeof(struct DNAValues));
-	alph->letter = letter;
-	alph->value = value;
-
-	Hash_ADD_INT(dna, letter, alph);
-}
-
-void addAlphabetLetter(struct rankedAlphabet *alphabet, int newLetter[], int rank){
+void addAlphabetLetter(struct rankedAlphabet *alphabet, char newLetter[], int rank){
 	struct rankedAlphabet *alph;
 	alph = malloc(sizeof(struct rankedAlphabet));
-	alph->letter = malloc(sizeof(newLetter) * sizeof(int));
 
-	for(int i = 0; i < sizeof(newLetter); i++){
-		alph->letter[i] = newLetter[i];
+	HASH_FIND_STR(alphabet, newLetter, alph);
+	if(alph != NULL){
+		strncpy(alph->letter, newLetter, 15);
+		alph->rank = 0;
+
+		HASH_ADD_STR(alphabet, letter, alph);
 	}
+}
 
-	alph->rank = 0;
-	
-	HASH_ADD_PTR(alphabet, letter, alph);
+int letter_sort(struct rankedAlphabet *a, struct rankedAlphabet *b) {
+    return strcmp(a->letter,b->letter);
+}
+
+void setSentinels(){
+	extern char sentinel[29];
+	sentinel[0] = '!';
+	sentinel[1] = '"';
+	sentinel[2] = '#';
+	sentinel[3] = '$';
+	sentinel[4] = '%';
+	sentinel[5] = '&';
+	sentinel[6] = '\'';
+	sentinel[7] = '(';
+	sentinel[8] = ')';
+	sentinel[9] = '*';
+	sentinel[10] = '+';
+	sentinel[11] = ',';
+	sentinel[12] = '-';
+	sentinel[13] = '.';
+	sentinel[14] = '/';
+	sentinel[15] = '0';
+	sentinel[16] = '1';
+	sentinel[17] = '2';
+	sentinel[18] = '3';
+	sentinel[19] = '4';
+	sentinel[20] = '5';
+	sentinel[21] = '6';
+	sentinel[22] = '7';
+	sentinel[23] = '8';
+	sentinel[24] = '9';
+	sentinel[25] = ':';
+	sentinel[26] = ';';
+	sentinel[27] = '<';
+	sentinel[28] = '=';
 }

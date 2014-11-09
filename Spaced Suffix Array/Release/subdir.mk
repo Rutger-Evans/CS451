@@ -4,20 +4,23 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Alphabet.c 
+../Alphabet.c \
+../testDriver.c 
 
 OBJS += \
-./Alphabet.o 
+./Alphabet.o \
+./testDriver.o 
 
 C_DEPS += \
-./Alphabet.d 
+./Alphabet.d \
+./testDriver.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 %.o: ../%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C Compiler'
-	gcc -c99 -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	gcc -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

@@ -8,36 +8,28 @@
 #ifndef SPACEDSUFFIXARRAY_ALPHABET_H_
 #define SPACEDSUFFIXARRAY_ALPHABET_H_
 
-#include <string.h>
 #include "uthash.h"
 
-UT_array *dna;
 int k;
 
+char sentinel[29];
+
 struct rankedAlphabet{
-	int *letter;
+	char letter[15];
 	int rank;
 	UT_hash_handle hh;
 };
 
-struct DNAValues{
-	int letter;
-	int value;
-	UT_hash_handle hh;
-};
+void fromString(char * text, int tLength, char mask[], int mLength, struct rankedAlphabet *alphabet);
 
-void fromString(char * text, int tLength, char mask[], int mLength, int * ascii);
+void toUpperCase(char * text, int tLength);
 
-void toUpperCase(char * text);
+void rankAlphabet(struct rankedAlphabet *alphabet, int mLength);
 
-void toAscii(char * text, int * ascii);
+void addAlphabetLetter(struct rankedAlphabet *alphabet, char newLetter[], int rank);
 
-void createDNAHash(struct DNAValues *hash);
+int letter_sort(struct rankedAlphabet *a, struct rankedAlphabet *b);
 
-void rankAlphabet(struct rankedAlphabet *alphabet);
-
-void addDNALetter(struct DNAValues *dna, int letter, int value);
-
-void addAlphabetLetter(struct rankedAlphabet *alphabet, int newLetter[], int rank);
+void setSentinels();
 
 #endif /* SPACEDSUFFIXARRAY_ALPHABET_H_ */
