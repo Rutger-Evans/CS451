@@ -20,13 +20,13 @@ struct rankedAlphabet{
 	UT_hash_handle hh;
 };
 
-void fromString(char * text, int tLength, char mask[], int mLength, struct rankedAlphabet *alphabet);
+void fromString(char * text, int tLength, char mask[], int mLength);
 
 void toUpperCase(char * text, int tLength);
 
-void rankAlphabet(struct rankedAlphabet *alphabet, int mLength);
+void rankAlphabet(int mLength);
 
-void addAlphabetLetter(struct rankedAlphabet *alphabet, char newLetter[], int rank);
+void addAlphabetLetter(char newLetter[]);
 
 int letter_sort(struct rankedAlphabet *a, struct rankedAlphabet *b);
 

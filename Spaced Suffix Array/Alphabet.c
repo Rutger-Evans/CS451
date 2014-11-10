@@ -12,7 +12,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-void fromString(char * text, int tLength, char mask[], int mLength, struct rankedAlphabet *alphabet){
+struct rankedAlphabet *alphabet = NULL; /*initialize hash to NULL*/
+
+void fromString(char * text, int tLength, char mask[], int mLength){
+	extern struct rankedAlphabet *alphabet;
 	extern int k;
 	extern char sentinel[29];
 	setSentinels();
@@ -34,21 +37,26 @@ void fromString(char * text, int tLength, char mask[], int mLength, struct ranke
 		text[tLength + i] = sentinel[i];
 	}
 
-	printf("%s",text);
+	printf("%s\n",text);
 
 	/* create the length m letter and initialize it with rank 0 */
-	for(i = 0; i < (tLength + padding); i = i + mLength){
+	for(i = 0; i < (tLength + padding) - mLength; i++){
 		char newLetter[15];
 		int j;
 		for(j = 0; j < mLength; j++){
-			newLetter[j] = text[i + j];
+			if(mask[j] != '0'){
+				newLetter[j] = text[i + j];
+			}
+			else{
+				newLetter[j] = '*';
+			}
 		}
-
-		addAlphabetLetter(alphabet, newLetter, 0);
+		newLetter[mLength] = '\0';
+		addAlphabetLetter(newLetter);
 	}
 
 	/* rank the alphabet */
-	rankAlphabet(alphabet, mLength);
+	rankAlphabet(mLength);
 }
 
 /* make the text all upper case */
@@ -61,7 +69,8 @@ void toUpperCase(char * text, int tLength){
 	}
 }
 
-void rankAlphabet(struct rankedAlphabet *alphabet, int mLength){
+void rankAlphabet( int mLength){
+	extern struct rankedAlphabet *alphabet;
 	struct rankedAlphabet *a;
 
 	HASH_SORT(alphabet, letter_sort);
@@ -73,13 +82,15 @@ void rankAlphabet(struct rankedAlphabet *alphabet, int mLength){
 	}
 }
 
-void addAlphabetLetter(struct rankedAlphabet *alphabet, char newLetter[], int rank){
+void addAlphabetLetter(char newLetter[]){
+	extern struct rankedAlphabet *alphabet;
 	struct rankedAlphabet *alph;
 	alph = malloc(sizeof(struct rankedAlphabet));
 
 	HASH_FIND_STR(alphabet, newLetter, alph);
-	if(alph != NULL){
-		strncpy(alph->letter, newLetter, 15);
+	if(alph == NULL){
+		alph = (struct rankedAlphabet *)malloc(sizeof(struct rankedAlphabet));
+		strncpy(alph->letter, newLetter,15);
 		alph->rank = 0;
 
 		HASH_ADD_STR(alphabet, letter, alph);
@@ -92,33 +103,33 @@ int letter_sort(struct rankedAlphabet *a, struct rankedAlphabet *b) {
 
 void setSentinels(){
 	extern char sentinel[29];
-	sentinel[0] = '!';
-	sentinel[1] = '"';
-	sentinel[2] = '#';
-	sentinel[3] = '$';
-	sentinel[4] = '%';
-	sentinel[5] = '&';
-	sentinel[6] = '\'';
-	sentinel[7] = '(';
-	sentinel[8] = ')';
-	sentinel[9] = '*';
-	sentinel[10] = '+';
-	sentinel[11] = ',';
-	sentinel[12] = '-';
-	sentinel[13] = '.';
+	sentinel[28] = '!';
+	sentinel[27] = '"';
+	sentinel[26] = '#';
+	sentinel[25] = '$';
+	sentinel[24] = '%';
+	sentinel[23] = '&';
+	sentinel[22] = '\'';
+	sentinel[21] = '(';
+	sentinel[20] = ')';
+	sentinel[19] = '*';
+	sentinel[18] = '+';
+	sentinel[17] = ',';
+	sentinel[16] = '-';
+	sentinel[15] = '.';
 	sentinel[14] = '/';
-	sentinel[15] = '0';
-	sentinel[16] = '1';
-	sentinel[17] = '2';
-	sentinel[18] = '3';
-	sentinel[19] = '4';
-	sentinel[20] = '5';
-	sentinel[21] = '6';
-	sentinel[22] = '7';
-	sentinel[23] = '8';
-	sentinel[24] = '9';
-	sentinel[25] = ':';
-	sentinel[26] = ';';
-	sentinel[27] = '<';
-	sentinel[28] = '=';
+	sentinel[13] = '0';
+	sentinel[12] = '1';
+	sentinel[11] = '2';
+	sentinel[10] = '3';
+	sentinel[9] = '4';
+	sentinel[8] = '5';
+	sentinel[7] = '6';
+	sentinel[6] = '7';
+	sentinel[5] = '8';
+	sentinel[4] = '9';
+	sentinel[3] = ':';
+	sentinel[2] = ';';
+	sentinel[1] = '<';
+	sentinel[0] = '=';
 }
