@@ -12,7 +12,7 @@
 
 int k;
 
-char sentinel[29];
+char sentinel[43];
 
 struct rankedAlphabet{
 	char letter[15];
@@ -20,7 +20,7 @@ struct rankedAlphabet{
 	UT_hash_handle hh;
 };
 
-void fromString(char * text, int tLength, char mask[], int mLength);
+void fromString(char * text, int * tLength, char mask[], int mLength);
 
 void toUpperCase(char * text, int tLength);
 

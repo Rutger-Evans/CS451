@@ -5,14 +5,20 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Alphabet.c \
+../DisLex.c \
+../MaskedSuffixArray.c \
 ../testDriver.c 
 
 OBJS += \
 ./Alphabet.o \
+./DisLex.o \
+./MaskedSuffixArray.o \
 ./testDriver.o 
 
 C_DEPS += \
 ./Alphabet.d \
+./DisLex.d \
+./MaskedSuffixArray.d \
 ./testDriver.d 
 
 

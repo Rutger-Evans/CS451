@@ -7,15 +7,20 @@
 
 #include <stdio.h>
 #include "Alphabet.h"
+#include "DisLex.h"
 #include "uthash.h"
-
+#include "MaskedSuffixArray.h"
+//#include <sary.h>;
 
 int main(int argc, char *argv[])
 {
-	extern struct rankedAlphabet *alphabet;
-
+	extern int *dLength;
+	extern char **maskedSuffixArray;
+	extern int *msaLength;
 	int tLen = 12;
-	char t[] = "acgtacgtacgt";
+	int *tLength = (int*)malloc(sizeof(int));
+	tLength = &tLen;
+	char t[] = "acaaagtacttagcat";
 	char *text = malloc(tLen * strlen(t));
 	text = strcpy(text, t);
 
@@ -23,17 +28,13 @@ int main(int argc, char *argv[])
 	char mask[] = "101";
 
 
-	fromString(text, tLen, mask, mLen);
+	fromString(text, tLength, mask, mLen);
+	createDisLex(text,*tLength, mask, mLen);
+	createMaskedSuffixArray(text, *tLength, mask, mLen);
 
-	struct rankedAlphabet *a;
-
-	unsigned int count;
-	count = HASH_COUNT(alphabet);
-
-	printf("%d", count);
-	for (a=alphabet; a != NULL; a=a->hh.next){
-		printf("%s\n",a->letter);
+	int i;
+	for (i = 0; i < *dLength;i++){
+		printf("%s\n",maskedSuffixArray[i]);
 	}
 	return 0;
 }
-
