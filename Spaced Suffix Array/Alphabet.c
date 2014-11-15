@@ -24,7 +24,7 @@ void fromString(char * text, int * tLength, char mask[], int mLength){
 
 	//printf("%d\n", *tLength);
 
-	toUpperCase(text, *tLength);
+	toLowerCase(text, *tLength);
 
 	int padding = 2 * mLength - 1;
 	
@@ -67,7 +67,7 @@ void fromString(char * text, int * tLength, char mask[], int mLength){
 }
 
 /* make the text all upper case */
-void toUpperCase(char * text, int tLength){
+void toLowerCase(char * text, int tLength){
 	int i;
 	for (i = 0; i < tLength; i++){
 		if (!islower(text[i])){

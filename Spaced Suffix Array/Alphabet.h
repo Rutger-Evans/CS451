@@ -22,7 +22,7 @@ struct rankedAlphabet{
 
 void fromString(char * text, int * tLength, char mask[], int mLength);
 
-void toUpperCase(char * text, int tLength);
+void toLowerCase(char * text, int tLength);
 
 void rankAlphabet(int mLength);
 

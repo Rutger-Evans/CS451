@@ -17,10 +17,10 @@ int main(int argc, char *argv[])
 	extern int *dLength;
 	extern char **maskedSuffixArray;
 	extern int *msaLength;
-	int tLen = 12;
+	int tLen = 18;
 	int *tLength = (int*)malloc(sizeof(int));
 	tLength = &tLen;
-	char t[] = "acaaagtacttagcat";
+	char t[] = "aaacgggttactgttcag";
 	char *text = malloc(tLen * strlen(t));
 	text = strcpy(text, t);
 
@@ -32,6 +32,8 @@ int main(int argc, char *argv[])
 	createDisLex(text,*tLength, mask, mLen);
 	createMaskedSuffixArray(text, *tLength, mask, mLen);
 
+	printf("%s\n", text);
+	printf("%s\n", mask);
 	int i;
 	for (i = 0; i < *dLength;i++){
 		printf("%s\n",maskedSuffixArray[i]);
