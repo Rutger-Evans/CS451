@@ -59,17 +59,4 @@ void createSuffixArray(int dLength){
 
 	suffixArray = malloc(dLength * sizeof(int));
 	sais_int(disLex, suffixArray, dLength, 255);
-//	int value = 0;
-//	int count = 0;
-//	int i;
-//	for(i = dLength - 1; value < dLength; i--){
-//		if(disLex[i] == value){
-//			suffixArray[count] = i;
-//			count++;
-//		}
-//		if(i == 0){
-//			value++;
-//			i = dLength - 1;
-//		}
-//	}
 }

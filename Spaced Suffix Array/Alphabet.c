@@ -16,7 +16,6 @@ struct rankedAlphabet *alphabet = NULL; /*initialize hash to NULL*/
 
 
 void fromString(char * text, int * tLength, char mask[], int mLength){
-	extern struct rankedAlphabet *alphabet;
 	extern int k;
 	extern char sentinel[43];
 	int maskCount = 0;
