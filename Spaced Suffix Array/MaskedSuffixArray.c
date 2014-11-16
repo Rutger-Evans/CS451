@@ -8,6 +8,8 @@
 #include "MaskedSuffixArray.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "sais.h"
+
 
 int * msaLength;
 int * suffixArray;
@@ -46,6 +48,7 @@ void createMaskedSuffixArray(char *text, int tLength, char mask[], int mLength){
 				empty++;
 			}
 		}
+		maskedSuffixArray[i][empty] = '\0';
 	}
 }
 
@@ -53,18 +56,20 @@ void createSuffixArray(int dLength){
 	extern int * disLex;
 	extern int * suffixArray;
 
+
 	suffixArray = malloc(dLength * sizeof(int));
-	int value = 0;
-	int count = 0;
-	int i;
-	for(i = dLength - 1; value < dLength; i--){
-		if(disLex[i] == value){
-			suffixArray[count] = i;
-			count++;
-		}
-		if(i == 0){
-			value++;
-			i = dLength - 1;
-		}
-	}
+	sais_int(disLex, suffixArray, dLength, 255);
+//	int value = 0;
+//	int count = 0;
+//	int i;
+//	for(i = dLength - 1; value < dLength; i--){
+//		if(disLex[i] == value){
+//			suffixArray[count] = i;
+//			count++;
+//		}
+//		if(i == 0){
+//			value++;
+//			i = dLength - 1;
+//		}
+//	}
 }

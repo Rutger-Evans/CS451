@@ -74,4 +74,5 @@ void createDisLex(char * text, int tLength, char mask[], int mLength){
 	for (i = 0; i < count; i++){
 		disLex[i] = tempdis[i];
 	}
+	free(tempdis);
 }
