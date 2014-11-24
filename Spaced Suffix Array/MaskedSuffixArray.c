@@ -9,23 +9,23 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "sais.h"
+#include <time.h>
 
 
 int * msaLength;
 int * suffixArray;
-char **maskedSuffixArray;
+int *maskedSuffixArray;
 void createMaskedSuffixArray(char *text, int tLength, char mask[], int mLength){
 	extern int *dLength;
 	extern int *msaLength;
 	extern int *suffixArray;
-	extern char **maskedSuffixArray;
 	extern int k;
 	int maskCount = 0;
 	createSuffixArray(*dLength);
 
 	msaLength = malloc(*dLength * sizeof(int));
 
-	maskedSuffixArray = malloc(*dLength * (sizeof(char*)));
+	maskedSuffixArray = malloc(*dLength * (sizeof(int)));
 
 	int i;
 	for(i = 0; i < mLength; i++){
@@ -33,23 +33,22 @@ void createMaskedSuffixArray(char *text, int tLength, char mask[], int mLength){
 			maskCount++;
 		}
 	}
+
+	//printf("length of suffix array: %d\n", *dLength);
+
+	time_t start, end;
+	start = clock();
 	for(i = 0; i < *dLength; i++){
 		int x = suffixArray[i]/(k+1);
 		int y = suffixArray[i]%(k+1);
 		int index = y * mLength + x;
 
 		msaLength[i] = tLength - index;
-		maskedSuffixArray[i] = malloc((tLength - index) * sizeof(char));
-		int empty = 0;
-		int j;
-		for(j = 0; j < tLength - index; j++){
-			if(mask[j % mLength] == '1'){
-				maskedSuffixArray[i][empty] = text[index + j];
-				empty++;
-			}
-		}
-		maskedSuffixArray[i][empty] = '\0';
+		maskedSuffixArray[i] = index;
 	}
+	end = clock();
+	int msec = (end - start) * 1000 / CLOCKS_PER_SEC;
+	printf("Time taken to create masked suffix array of T %d seconds, %d milliseconds\n", msec/1000, msec%1000);
 }
 
 void createSuffixArray(int dLength){
@@ -58,5 +57,10 @@ void createSuffixArray(int dLength){
 
 
 	suffixArray = malloc(dLength * sizeof(int));
-	sais_int(disLex, suffixArray, dLength, 255);
+	time_t start, end;
+	start = clock();
+	sais_int(disLex, suffixArray, dLength, 25500000);
+	end = clock();
+	int msec = (end - start) * 1000 / CLOCKS_PER_SEC;
+	printf("Time taken to create suffix array of Tprime %d seconds, %d milliseconds\n", msec/1000, msec%1000);
 }

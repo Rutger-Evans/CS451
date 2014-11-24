@@ -15,7 +15,6 @@ int *dLength;
 
 void createDisLex(char * text, int tLength, char mask[], int mLength){
 	extern struct rankedAlphabet *alphabet;
-	int *tempdis;
 	int runTotal = 0;
 	int tempRun = 0;
 	int count = 0;
@@ -32,6 +31,7 @@ void createDisLex(char * text, int tLength, char mask[], int mLength){
 	for (i = 0; i < mLength; i++){
 		int tempTotal = (tLength - i) / mLength;
 		tempRun = tempRun + tempTotal;
+		//printf("%d\n", tempTotal);
 		int j;
 		for(j = 0; j < tempTotal; j++){
 			char letter[15];
@@ -54,15 +54,14 @@ void createDisLex(char * text, int tLength, char mask[], int mLength){
 			HASH_FIND_STR(alphabet, letter, alph);
 
 			if(i == 0 && j == 0){
-				tempdis = malloc(tempRun * sizeof(int));
+				disLex = malloc(tempRun * sizeof(int));
 			}
 			else if(i != 0 && j == 0){
-				tempdis = realloc(tempdis, tempRun * sizeof(int));
+				disLex = realloc(disLex, tempRun * sizeof(int));
 			}
 
-
 			index = runTotal + j;
-			tempdis[index] = alph->rank;
+			disLex[index] = alph->rank;
 			count++;
 		}
 
@@ -70,9 +69,9 @@ void createDisLex(char * text, int tLength, char mask[], int mLength){
 	}
 	dLength = malloc(sizeof(int));
 	*dLength = count;
-	disLex = malloc(count * sizeof(int));
-	for (i = 0; i < count; i++){
-		disLex[i] = tempdis[i];
-	}
-	free(tempdis);
+//	disLex = malloc(count * sizeof(int));
+//	for (i = 0; i < count; i++){
+//		disLex[i] = tempdis[i];
+//	}
+//	free(tempdis);
 }

@@ -7,18 +7,21 @@ C_SRCS += \
 ../Alphabet.c \
 ../DisLex.c \
 ../MaskedSuffixArray.c \
+../sais.c \
 ../testDriver.c 
 
 OBJS += \
 ./Alphabet.o \
 ./DisLex.o \
 ./MaskedSuffixArray.o \
+./sais.o \
 ./testDriver.o 
 
 C_DEPS += \
 ./Alphabet.d \
 ./DisLex.d \
 ./MaskedSuffixArray.d \
+./sais.d \
 ./testDriver.d 
 
 
