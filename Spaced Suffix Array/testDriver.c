@@ -11,13 +11,14 @@
 #include "uthash.h"
 #include "MaskedSuffixArray.h"
 #include <time.h>
+#include <stdbool.h>
 
 int main(int argc, char *argv[]) {
 
-	if (argc != 2) /* argc should be 2 for correct execution */
+	if (argc != 3) /* argc should be 2 for correct execution */
 	{
 		/* We print argv[0] assuming it is the program name */
-		printf("usage: %s filename", argv[0]);
+		printf("usage: %s filename mask", argv[0]);
 	} else {
 		// argv[1] is a filename to open
 		FILE *file = fopen(argv[1], "r");
@@ -31,6 +32,28 @@ int main(int argc, char *argv[]) {
 			int tLen = -1;
 			int w = 0;
 			char * text;
+
+			char * mask = argv[2];
+			int mLen = strlen(mask);
+
+			bool isValidMask = true;
+
+			int i;
+			for(i = 0; i < mLen; i++){
+				if(mask[i] != '0' && mask[i] != '1'){
+					isValidMask = false;
+				}
+			}
+
+			if(!isValidMask){
+				printf("Invalid mask. The mask must only contain 1 and 0.\n");
+				return 0;
+			}
+
+			if(mLen > 18){
+				printf("Invalid mask. The mask must be less than 18 characters long.\n");
+				return 0;
+			}
 			//initial allocation, 0 bytes
 			text = (char*) malloc(0 *sizeof(char*));
 
@@ -80,24 +103,24 @@ int main(int argc, char *argv[]) {
 			//printf("%s\n",text);
 			int *tLength = (int*)malloc(sizeof(int));
 			tLength = &tLen;
-			int mLen = 3;
-			char mask[] = "101";
+			//int mLen = 3;
+			//char mask[] = "101";
 
-			printf("length of text: %d\n", tLen);
+			//printf("length of text: %d\n", tLen);
 
-			time_t start, end;
-			start = clock();
+			//time_t start, end;
+			//start = clock();
 			fromString(text, tLength, mask, mLen);
-			end = clock();
-			int msec = (end - start) * 1000 / CLOCKS_PER_SEC;
-			printf("Time taken to create alphabet %d seconds, %d milliseconds\n", msec/1000, msec%1000);
+			//end = clock();
+			//int msec = (end - start) * 1000 / CLOCKS_PER_SEC;
+			//printf("Time taken to create alphabet %d seconds, %d milliseconds\n", msec/1000, msec%1000);
 			//printf("%s\n",text); //print out last one
 
-			start = clock();
+			//start = clock();
 			createDisLex(text,*tLength, mask, mLen);
-			end = clock();
-			msec = (end - start) * 1000 / CLOCKS_PER_SEC;
-			printf("Time taken to create Tprime %d seconds, %d milliseconds\n", msec/1000, msec%1000);
+			//end = clock();
+			//msec = (end - start) * 1000 / CLOCKS_PER_SEC;
+			//printf("Time taken to create Tprime %d seconds, %d milliseconds\n", msec/1000, msec%1000);
 
 			createMaskedSuffixArray(text, *tLength, mask, mLen);
 
