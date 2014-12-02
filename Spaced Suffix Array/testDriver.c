@@ -13,6 +13,29 @@
 #include <time.h>
 #include <stdbool.h>
 
+bool writeFile(int mLen, int saLen, int tLen, char *mask, int* sary, char *text){
+	time_t currentTime;
+	char* cTimeString;
+
+	currentTime = time(NULL);
+	cTimeString = ctime(&currentTime);
+
+	FILE *write_ptr;
+
+	//strcat(cTimeString,(char)0);
+	strcat(cTimeString, ".sa");
+	//printf("\n%s\n", cTimeString);
+	write_ptr = fopen(cTimeString, "wb");
+	fwrite(& mLen, sizeof(int), 1, write_ptr);
+	fwrite(& saLen, sizeof(int), 1, write_ptr);
+	fwrite(& tLen, sizeof(int), 1, write_ptr);
+	fwrite(mask, sizeof(mask), mLen, write_ptr);
+	fwrite(sary, sizeof(sary), saLen, write_ptr);
+	fwrite(text, sizeof(text), tLen, write_ptr);
+	fclose(write_ptr);
+	return true;
+}
+
 int main(int argc, char *argv[]) {
 
 	if (argc != 3) /* argc should be 2 for correct execution */
@@ -124,7 +147,11 @@ int main(int argc, char *argv[]) {
 
 			createMaskedSuffixArray(text, *tLength, mask, mLen);
 
+			bool fileWritten = writeFile(mLen, *dLength, tLen, mask, maskedSuffixArray, text);
 
+			if(!fileWritten){
+				printf("Error writing file.");
+			}
 
 			free(dLength);
 			free(maskedSuffixArray);
@@ -133,3 +160,5 @@ int main(int argc, char *argv[]) {
 	}
 	return 0;
 }
+
+

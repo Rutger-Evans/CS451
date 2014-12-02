@@ -17,7 +17,7 @@ struct rankedAlphabet *alphabet = NULL; /*initialize hash to NULL*/
 
 void fromString(char * text, int * tLength, char mask[], int mLength){
 	extern int k;
-	extern char sentinel[43];
+	extern char sentinel[54];
 	int maskCount = 0;
 	setSentinels();
 
@@ -108,7 +108,20 @@ int letter_sort(struct rankedAlphabet *a, struct rankedAlphabet *b) {
 }
 
 void setSentinels(){
-	extern char sentinel[43];
+	extern char sentinel[54];
+
+	sentinel[54] = (char)42;
+	sentinel[53] = (char)43;
+	sentinel[52] = (char)44;
+	sentinel[51] = (char)45;
+	sentinel[50] = (char)46;
+	sentinel[49] = (char)47;
+	sentinel[48] = (char)48;
+	sentinel[47] = (char)49;
+	sentinel[46] = (char)50;
+	sentinel[45] = (char)51;
+	sentinel[44] = (char)52;
+	sentinel[43] = (char)53;
 	sentinel[42] = (char)54;
 	sentinel[41] = (char)55;
 	sentinel[40] = (char)56;

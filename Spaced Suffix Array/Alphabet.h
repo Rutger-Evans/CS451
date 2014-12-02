@@ -12,7 +12,7 @@
 
 int k;
 
-char sentinel[43];
+char sentinel[54];
 
 struct rankedAlphabet{
 	char letter[15];
