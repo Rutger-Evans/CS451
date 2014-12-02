@@ -29,9 +29,9 @@ bool writeFile(int mLen, int saLen, int tLen, char *mask, int* sary, char *text)
 	fwrite(& mLen, sizeof(int), 1, write_ptr);
 	fwrite(& saLen, sizeof(int), 1, write_ptr);
 	fwrite(& tLen, sizeof(int), 1, write_ptr);
-	fwrite(mask, sizeof(mask), mLen, write_ptr);
-	fwrite(sary, sizeof(sary), saLen, write_ptr);
-	fwrite(text, sizeof(text), tLen, write_ptr);
+	fwrite(mask, sizeof(char), mLen, write_ptr);
+	fwrite(sary, sizeof(int), saLen, write_ptr);
+	fwrite(text, sizeof(char), tLen, write_ptr);
 	fclose(write_ptr);
 	return true;
 }

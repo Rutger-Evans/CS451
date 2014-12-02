@@ -34,7 +34,7 @@ void createDisLex(char * text, int tLength, char mask[], int mLength){
 		//printf("%d\n", tempTotal);
 		int j;
 		for(j = 0; j < tempTotal; j++){
-			char letter[18];
+			char letter[19];
 
 			int empty = 0;
 			int m;
