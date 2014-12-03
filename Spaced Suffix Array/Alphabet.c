@@ -46,7 +46,7 @@ void fromString(char * text, int * tLength, char mask[], int mLength){
 	}
 	/* create the length m letter and initialize it with rank 0 */
 	for(i = 0; i < (*tLength + padding) - (mLength - 1); i++){
-		char newLetter[15];
+		char newLetter[19];
 		int index = 0;
 		int j;
 		for(j = 0; j < mLength; j++){
